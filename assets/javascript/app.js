@@ -19,6 +19,24 @@ $(document).ready(function () {
         }
     }
 
+    var timeRemaining;
+    var countdownTimer;
+
+    function startCountDown() {
+        timeRemaining = 7;
+        countdownTimer = setInterval(function () {
+            timeRemaining--;
+            $("#timer").text(timeRemaining);
+            if (timeRemaining === 0) {
+                timeoutScreen();
+            }
+        }, 1000);
+    }
+
+    /*function stopCountdown() {
+        clearInterval(countdownTimer);
+    }*/
+
     var questionCount = Object.keys(questions).length; //total number of questions
     var questionPicker; //= Math.round(Math.random(Object.keys(questions).length)); //generates number by which property is picked from question object
     var currentQuestion;
@@ -26,8 +44,15 @@ $(document).ready(function () {
     var questionHistory = []; //Array to store history of questions already asked
 
     function newQuestion() {
+        clearInterval(gameOverTimer);
+        clearInterval(timeoutTimer);
+        clearInterval(correctScreenTimer);
+        clearInterval(lossScreenTimer);
+        $(".gameContent").empty();
+        clearInterval(countdownTimer);
+        startCountDown();
         if (questionHistory.length === questionCount) {
-            questionHistory = [];
+            gameOverScreen();
         } //If all questions have been used, clear history and restart selection process
         for (i = 0; (questionHistory.length === 0 && i === 0) || (questionHistory.length > 0 && questionHistory.indexOf(questionPicker) !== -1); i++) {
             questionPicker = Math.round(Math.random(questionCount));
@@ -38,25 +63,91 @@ $(document).ready(function () {
     }
 
     function pageContent() {
+        var timerDiv = $('<p align="center">Time Remaining: <span id="timer"></span></p>');
+        $(".gameContent").append(timerDiv);
+        $("#timer").text(timeRemaining);
+        
+        var questionDiv = $('<h3 id="question"></h3>');
+        $(".gameContent").append(questionDiv);
         $("#question").text(questions[currentQuestion].question);
+        
+        var aoDiv1 = $('<h2 class="answer" id="answerOption1" data-question="answerOption1"></h2>');
+        $(".gameContent").append(aoDiv1);
         $("#answerOption1").text(questions[currentQuestion].answerOption1);
+
+        var aoDiv2 = $('<h2 class="answer" id="answerOption2" data-question="answerOption2"></h2>');
+        $(".gameContent").append(aoDiv2);
         $("#answerOption2").text(questions[currentQuestion].answerOption2);
+
+        var aoDiv3 = $('<h2 class="answer" id="answerOption3" data-question="answerOption4"></h2>');
+        $(".gameContent").append(aoDiv3);
         $("#answerOption3").text(questions[currentQuestion].answerOption3);
+
+        var aoDiv4 = $('<h2 class="answer" id="answerOption4" data-question="answerOption4"></h2>');
+        $(".gameContent").append(aoDiv4);
         $("#answerOption4").text(questions[currentQuestion].answerOption4);
     }//executes eachtime page contnet must be initialised or changed
 
-    $(document).on("click", '.question', function (event) {
-        var selectedAnswer = this.id;
+
+    var selectedAnswer;
+
+    $(document).on("click", '.answer', function (event) {
+        selectedAnswer = this.id;
         if (questions[currentQuestion][selectedAnswer] === questions[currentQuestion].correctAnswer) {
-            alert("Right!");
-            newQuestion();
+            correctScreen();
         } else {
-            alert("Wrong!");
-            newQuestion();
+            lossScreen();
         }
     })
 
-    window.onload = newQuestion();
-    window.onload = pageContent();
+    var correctScreenTimer;
+    var correctCount = 0;
 
+    function correctScreen () {
+        correctCount++;
+        clearInterval(countdownTimer);
+        $(".gameContent").empty();
+        var winMessage = $('<h2> Congratulations! ' + questions[currentQuestion].correctAnswer + ' was the right answer</h2>');
+        $(".gameContent").append(winMessage);
+        correctScreenTimer = setInterval(newQuestion, 1000 *5);
+    }
+
+    var lossScreenTimer;
+    var lossCount = 0;
+
+    function lossScreen () {
+        lossCount++;
+        clearInterval(countdownTimer);
+        $(".gameContent").empty();
+        var lossMessage = $('<h2> Sorry, wrong answer! You guessed '+ questions[currentQuestion][selectedAnswer] + '. However, '  + questions[currentQuestion].correctAnswer + ' was the right answer.</h2>');
+        $(".gameContent").append(lossMessage);
+        lossScreenTimer = setInterval(newQuestion, 1000 *5);
+    }
+
+    var timeoutTimer;
+    var timeoutCount = 0;
+
+    function timeoutScreen () {
+        timeoutCount++;
+        $(".gameContent").empty();
+        var timeoutMessage = $('<h2>You\'ve run out of time! The correct answer was ' + questions[currentQuestion].correctAnswer + '. </h2>');
+        $(".gameContent").append(timeoutMessage);
+        timeoutTimer = setInterval(newQuestion, 1000 *5);
+    }
+
+    var gameOverTimer;
+
+    function gameOverScreen () {
+        $(".gameContent").empty();
+        clearInterval(countdownTimer);
+        var gameOverMessage = $('<h2>Game Over</h2><p>Correct Guesses: ' + correctCount + '</p> <p>Wrong Guesses: ' + lossCount + '</p> <p>Out of Time: ' + timeoutCount + '</p>');
+        $(".gameContent").append(gameOverMessage);
+        gameOverTimer = setInterval(newQuestion, 1000 * 10);
+        questionHistory = [];
+        timeoutCount = 0;
+        correctCount = 0;
+        lossCount = 0;
+    }
+
+    window.onload = newQuestion();
 })
