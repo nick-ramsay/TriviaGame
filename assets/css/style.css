@@ -1,8 +1,26 @@
 body {
     margin: 10px;
+    background-image: url("../images/prism.png");
 }
 
 .container {
-    background-color: blue;
-    color:white;
+    background-color: teal;
+    color: white;
+    height: 90vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    border: 1px solid teal;
+    border-radius: 10px;
+}
+
+.answer {
+    border: white 3px solid;
+    border-radius: 25px;
+}
+
+.answer:hover {
+    border: teal 3px solid;
+    border-radius: 25px;
+    background-color: white;
+    color: teal;
 }
