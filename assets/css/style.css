@@ -1,26 +1,27 @@
 body {
     margin: 10px;
     background-image: url("../images/prism.png");
+    font-family: 'Baloo', cursive;
 }
 
 .container {
-    background-color: teal;
-    color: white;
+    background-color: antiquewhite;
+    color: black;
     height: 90vh;
     margin-top: 5vh;
     margin-bottom: 5vh;
-    border: 1px solid teal;
+    border: 1px solid antiquewhite;
     border-radius: 10px;
 }
 
 .answer {
-    border: white 3px solid;
+    border: antiquewhite 3px solid;
     border-radius: 25px;
 }
 
 .answer:hover {
-    border: teal 3px solid;
+    border: black 3px solid;
     border-radius: 25px;
     background-color: white;
-    color: teal;
+    color: black;
 }
