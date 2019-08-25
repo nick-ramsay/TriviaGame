@@ -3,17 +3,19 @@ $(document).ready(function () {
         question1: {
             question: "In what year did World War II end?",
             correctAnswer: 1945,
-            incorrectAnswer1: 1963,
-            incorrectAnswer2: 1919,
-            incorrectAnswer3: 1933
+            answerOption1: 1963,
+            answerOption2: 1919,
+            answerOption3: 1945,
+            answerOption4: 1933
         },
 
         question2: {
             question: "Who is Australia's current Prime Minister?",
             correctAnswer: "Scott Morrison",
-            incorrectAnswer1: "Tony Abbott",
-            incorrectAnswer2: "Kevin Rudd",
-            incorrectAnswer3: "Julia Gilliard"
+            answerOption1: "Tony Abbott",
+            answerOption2: "Scott Morrison",
+            answerOption3: "Kevin Rudd",
+            answerOption4: "Julia Gilliard"
         }
     }
 
@@ -27,20 +29,32 @@ $(document).ready(function () {
         if (questionHistory.length === questionCount) {
             questionHistory = [];
         } //If all questions have been used, clear history and restart selection process
-        for (i = 0; (questionHistory.length === 0 && i === 0) || (questionHistory.length > 0 && questionPicker.indexOf(questionHistory) === -1); i++) {
+        for (i = 0; (questionHistory.length === 0 && i === 0) || (questionHistory.length > 0 && questionHistory.indexOf(questionPicker) !== -1); i++) {
             questionPicker = Math.round(Math.random(questionCount));
         } //If history empty, iterate once & pick one. Else, continue picking until you find question NOT in history (indexOf = -1)
         currentQuestion = Object.keys(questions)[questionPicker];
         questionHistory.push(currentQuestion);
+        pageContent();
     }
 
     function pageContent() {
         $("#question").text(questions[currentQuestion].question);
-        $("#answerOption1").text(questions[currentQuestion].correctAnswer);
-        $("#answerOption2").text(questions[currentQuestion].incorrectAnswer1);
-        $("#answerOption3").text(questions[currentQuestion].incorrectAnswer2);
-        $("#answerOption4").text(questions[currentQuestion].incorrectAnswer3);
+        $("#answerOption1").text(questions[currentQuestion].answerOption1);
+        $("#answerOption2").text(questions[currentQuestion].answerOption2);
+        $("#answerOption3").text(questions[currentQuestion].answerOption3);
+        $("#answerOption4").text(questions[currentQuestion].answerOption4);
     }//executes eachtime page contnet must be initialised or changed
+
+    $(document).on("click", '.question', function (event) {
+        var selectedAnswer = this.id;
+        if (questions[currentQuestion][selectedAnswer] === questions[currentQuestion].correctAnswer) {
+            alert("Right!");
+            newQuestion();
+        } else {
+            alert("Wrong!");
+            newQuestion();
+        }
+    })
 
     window.onload = newQuestion();
     window.onload = pageContent();
