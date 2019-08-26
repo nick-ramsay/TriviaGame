@@ -1,21 +1,72 @@
 body {
     margin: 10px;
-    background-image: url("../images/prism.png");
+    background-image: url("../images/memphis-colorful.png");
     font-family: 'Baloo', cursive;
 }
 
 .container {
-    background-color: antiquewhite;
-    color: black;
+    background-color: lightslategray;
+    color: whitesmoke;
     height: 90vh;
     margin-top: 5vh;
     margin-bottom: 5vh;
-    border: 1px solid antiquewhite;
+    border: 1px solid lightslategray;
     border-radius: 10px;
 }
 
 .answer {
-    border: antiquewhite 3px solid;
+    background-color: white;
+}
+
+#answerOption1 {
+    color: blue;
+    border: blue 3px solid;
+    border-radius: 25px;
+}
+
+#answerOption1:hover {
+    background-color: blue;
+    color: white;
+    border: blue 3px solid;
+    border-radius: 25px;
+}
+
+#answerOption2 {
+    color: green;
+    border: green 3px solid;
+    border-radius: 25px;
+}
+
+#answerOption2:hover {
+    background-color: green;
+    color: white;
+    border: green 3px solid;
+    border-radius: 25px;
+}
+
+#answerOption3 {
+    color: orangered;
+    border: orangered 3px solid;
+    border-radius: 25px;
+}
+
+#answerOption3:hover {
+    background-color: orangered;
+    color: white;
+    border: orangered 3px solid;
+    border-radius: 25px;
+}
+
+#answerOption4 {
+    color: indigo;
+    border: indigo 3px solid;
+    border-radius: 25px;
+}
+
+#answerOption4:hover {
+    background-color: indigo;
+    color: white;
+    border: indigo 3px solid;
     border-radius: 25px;
 }
 

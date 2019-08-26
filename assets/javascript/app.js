@@ -139,7 +139,7 @@ $(document).ready(function () {
         if (questionHistory.length < questionCount) {
             correctScreenTimer = setInterval(newQuestion, 1000 * 5);
         } else {
-            gameOverScreen();
+            correctScreenTimer = setInterval(gameOverScreen, 1000 * 5);
         }
     }
 
@@ -155,7 +155,7 @@ $(document).ready(function () {
         if (questionHistory.length < questionCount) {
             lossScreenTimer = setInterval(newQuestion, 1000 * 5);
         } else {
-            gameOverScreen();
+            lossScreenTimer = setInterval(gameOverScreen, 1000 * 5);
         }
     }
 
@@ -170,7 +170,7 @@ $(document).ready(function () {
         if (questionHistory.length < questionCount) {
             timeoutTimer = setInterval(newQuestion, 1000 * 5);
         } else {
-            gameOverScreen();
+            timeoutTimer = setInterval(gameOverScreen, 1000 * 5);
         }
     }
 
