@@ -2,6 +2,7 @@ $(document).ready(function () {
     questions = {
         question1: {
             question: "In what year did World War II end?",
+            answerImg: "http://wd4eui.com/Pictures/Char_Obs_Aug_1945.jpg",
             correctAnswer: 1945,
             answerOption1: 1963,
             answerOption2: 1919,
@@ -11,14 +12,44 @@ $(document).ready(function () {
 
         question2: {
             question: "Who is Australia's current Prime Minister?",
+            answerImg: "source",
             correctAnswer: "Scott Morrison",
             answerOption1: "Tony Abbott",
             answerOption2: "Scott Morrison",
             answerOption3: "Kevin Rudd",
             answerOption4: "Julia Gilliard"
+        },
+
+        question3: {
+            question: "Placeholder 3",
+            answerImg: "source",
+            correctAnswer: "correct3",
+            answerOption1: "correct3",
+            answerOption2: "incorrect",
+            answerOption3: "incorrect",
+            answerOption4: "incorrect"
+        },
+
+        question4: {
+            question: "Placeholder 4",
+            answerImg: "source",
+            correctAnswer: "correct4",
+            answerOption1: "correct4",
+            answerOption2: "incorrect",
+            answerOption3: "incorrect",
+            answerOption4: "incorrect"
+        },
+
+        question5: {
+            question: "Placeholder 5",
+            answerImg: "source",
+            correctAnswer: "correct5",
+            answerOption1: "correct5",
+            answerOption2: "incorrect",
+            answerOption3: "incorrect",
+            answerOption4: "incorrect"
         }
     }
-
 
     var timeRemaining;
     var countdownTimer;
@@ -33,10 +64,6 @@ $(document).ready(function () {
             }
         }, 1000);
     }
-
-    /*function stopCountdown() {
-        clearInterval(countdownTimer);
-    }*/
 
     var questionCount = Object.keys(questions).length; //total number of questions
     var questionPicker; //= Math.round(Math.random(Object.keys(questions).length)); //generates number by which property is picked from question object
@@ -53,10 +80,12 @@ $(document).ready(function () {
         clearInterval(countdownTimer);
         startCountDown();
         for (i = 0; (questionHistory.length === 0 && i === 0) || (questionHistory.length > 0 && questionHistory.indexOf(questionPicker) !== -1); i++) {
-            questionPicker = Math.round(Math.random(questionCount));
+            questionPicker = Math.floor(Math.random() * questionCount);
+            console.log(questionPicker);
+            console.log(questionHistory.indexOf(questionPicker));
         } //If history empty, iterate once & pick one. Else, continue picking until you find question NOT in history (indexOf = -1)
         currentQuestion = Object.keys(questions)[questionPicker];
-        questionHistory.push(currentQuestion);
+        questionHistory.push(questionPicker);
         pageContent();
     }
 
