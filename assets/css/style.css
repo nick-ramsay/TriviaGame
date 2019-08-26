@@ -7,9 +7,9 @@ body {
 .container {
     background-color: lightslategray;
     color: whitesmoke;
-    height: 90vh;
+    height: 80vh;
     margin-top: 5vh;
-    margin-bottom: 5vh;
+    margin-bottom: 15vh;
     border: 1px solid lightslategray;
     border-radius: 10px;
 }
