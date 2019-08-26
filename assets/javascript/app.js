@@ -177,14 +177,17 @@ $(document).ready(function () {
     function gameOverScreen() {
         $(".gameContent").empty();
         clearInterval(countdownTimer);
+        clearInterval(timeoutTimer);
+        clearInterval(correctScreenTimer);
+        clearInterval(lossScreenTimer);
         var gameOverMessage = $('<h2>Game Over</h2><p>Correct Guesses: ' + correctCount + '</p> <p>Wrong Guesses: ' + lossCount + '</p> <p>Out of Time: ' + timeoutCount + '</p> <button class="btn btn-success newGameBtn">Play Again</button>');
         $(".gameContent").append(gameOverMessage);
         questionHistory = [];
-        timeoutCount = 0;
-        correctCount = 0;
-        lossCount = 0;
         $(".newGameBtn").on("click", function start() {
             newQuestion();
+            timeoutCount = 0;
+            correctCount = 0;
+            lossCount = 0;
         })
     }
 
