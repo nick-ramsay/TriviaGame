@@ -81,8 +81,6 @@ $(document).ready(function () {
         startCountDown();
         for (i = 0; (questionHistory.length === 0 && i === 0) || (questionHistory.length > 0 && questionHistory.indexOf(questionPicker) !== -1); i++) {
             questionPicker = Math.floor(Math.random() * questionCount);
-            console.log(questionPicker);
-            console.log(questionHistory.indexOf(questionPicker));
         } //If history empty, iterate once & pick one. Else, continue picking until you find question NOT in history (indexOf = -1)
         currentQuestion = Object.keys(questions)[questionPicker];
         questionHistory.push(questionPicker);
