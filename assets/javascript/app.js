@@ -17,37 +17,37 @@ $(document).ready(function () {
             answerOption1: "Tony Abbott",
             answerOption2: "Scott Morrison",
             answerOption3: "Kevin Rudd",
-            answerOption4: "Julia Gilliard"
+            answerOption4: "Julia Gillard"
         },
 
         question3: {
-            question: "Placeholder 3",
+            question: "Which is the only US state borders only one other?",
             answerImg: "source",
-            correctAnswer: "correct3",
-            answerOption1: "correct3",
-            answerOption2: "incorrect",
-            answerOption3: "incorrect",
-            answerOption4: "incorrect"
+            correctAnswer: "Maine",
+            answerOption1: "Alaska",
+            answerOption2: "Hawaii",
+            answerOption3: "Florida",
+            answerOption4: "Maine"
         },
 
         question4: {
-            question: "Placeholder 4",
+            question: "Donald Trump's current term as US President ends in what year?",
             answerImg: "source",
-            correctAnswer: "correct4",
-            answerOption1: "correct4",
-            answerOption2: "incorrect",
-            answerOption3: "incorrect",
-            answerOption4: "incorrect"
+            correctAnswer: "2021",
+            answerOption1: "2020",
+            answerOption2: "2022",
+            answerOption3: "2021",
+            answerOption4: "2025"
         },
 
         question5: {
-            question: "Placeholder 5",
+            question: "Mt. Everest sits on the border of which two countries?",
             answerImg: "source",
-            correctAnswer: "correct5",
-            answerOption1: "correct5",
-            answerOption2: "incorrect",
-            answerOption3: "incorrect",
-            answerOption4: "incorrect"
+            correctAnswer: "Nepal and China",
+            answerOption1: "India and China",
+            answerOption2: "India and Nepal",
+            answerOption3: "Nepal and China",
+            answerOption4: "Russia and China"
         }
     }
 
@@ -55,7 +55,7 @@ $(document).ready(function () {
     var countdownTimer;
 
     function startCountDown() {
-        timeRemaining = 7;
+        timeRemaining = 30;
         countdownTimer = setInterval(function () {
             timeRemaining--;
             $("#timer").text(timeRemaining);
