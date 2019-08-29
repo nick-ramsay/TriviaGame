@@ -21,7 +21,7 @@ $(document).ready(function () {
         },
 
         question3: {
-            question: "Which is the only US state borders only one other?",
+            question: "Which is the only US state that shares a border with only one other state?",
             answerImg: "source",
             correctAnswer: "Maine",
             answerOption1: "Alaska",
@@ -88,7 +88,7 @@ $(document).ready(function () {
     }
 
     function pageContent() {
-        var timerDiv = $('<p align="center">Time Remaining: <span id="timer"></span></p>');
+        var timerDiv = $('<h3 align="center">Time Remaining: <span id="timer"></span></h3>');
         $(".gameContent").append(timerDiv);
         $("#timer").text(timeRemaining);
 
@@ -132,7 +132,7 @@ $(document).ready(function () {
         correctCount++;
         clearInterval(countdownTimer);
         $(".gameContent").empty();
-        var winMessage = $('<h2> Congratulations! ' + questions[currentQuestion].correctAnswer + ' was the correct answer.</h2>');
+        var winMessage = $('<h2> Congratulations! ' + questions[currentQuestion].correctAnswer + ' is the correct answer.</h2>');
         $(".gameContent").append(winMessage);
         if (questionHistory.length < questionCount) {
             correctScreenTimer = setInterval(newQuestion, 1000 * 5);
@@ -148,7 +148,7 @@ $(document).ready(function () {
         lossCount++;
         clearInterval(countdownTimer);
         $(".gameContent").empty();
-        var lossMessage = $('<h2> Sorry, wrong answer! You guessed ' + questions[currentQuestion][selectedAnswer] + '. The correct answer was ' + questions[currentQuestion].correctAnswer + '.</h2>');
+        var lossMessage = $('<h2> Sorry, wrong answer! You guessed ' + questions[currentQuestion][selectedAnswer] + '. The correct answer is ' + questions[currentQuestion].correctAnswer + '.</h2>');
         $(".gameContent").append(lossMessage);
         if (questionHistory.length < questionCount) {
             lossScreenTimer = setInterval(newQuestion, 1000 * 5);
@@ -163,7 +163,7 @@ $(document).ready(function () {
     function timeoutScreen() {
         timeoutCount++;
         $(".gameContent").empty();
-        var timeoutMessage = $('<h2>You\'ve run out of time! The correct answer was ' + questions[currentQuestion].correctAnswer + '. </h2>');
+        var timeoutMessage = $('<h2>You\'ve run out of time! The correct answer is ' + questions[currentQuestion].correctAnswer + '. </h2>');
         $(".gameContent").append(timeoutMessage);
         if (questionHistory.length < questionCount) {
             timeoutTimer = setInterval(newQuestion, 1000 * 5);
