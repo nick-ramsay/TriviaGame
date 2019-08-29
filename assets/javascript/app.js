@@ -88,7 +88,7 @@ $(document).ready(function () {
     }
 
     function pageContent() {
-        var timerDiv = $('<h3 align="center">Time Remaining: <span id="timer"></span></h3>');
+        var timerDiv = $('<h4 align="center">Time Remaining: <span id="timer"></span></h4>');
         $(".gameContent").append(timerDiv);
         $("#timer").text(timeRemaining);
 
