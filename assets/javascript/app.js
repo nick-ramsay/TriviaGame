@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    questions = {
-        question1: {
+    questions = [
+        question1 = {
             question: "In what year did World War II end?",
             correctAnswerImg: "https://media.giphy.com/media/3o6Zt01xXnNM3cFuc8/giphy.gif",
             incorrectAnswerImg: "https://media.giphy.com/media/EXHHMS9caoxAA/giphy.gif",
@@ -12,7 +12,7 @@ $(document).ready(function () {
             answerOption4: 1933
         },
 
-        question2: {
+        question2 = {
             question: "Who is Australia's current Prime Minister?",
             correctAnswerImg: "https://media.giphy.com/media/fdLJGv7vyErSbzkYXY/giphy.gif",
             incorrectAnswerImg: "https://media.giphy.com/media/HrydPrw0zphAs/giphy.gif",
@@ -24,7 +24,7 @@ $(document).ready(function () {
             answerOption4: "Julia Gillard"
         },
 
-        question3: {
+        question3 = {
             question: "Which is the only US state that shares a border with only one other state?",
             correctAnswerImg: "https://media.giphy.com/media/fjxu2NuXWuWtsa9Cm1/giphy.gif",
             incorrectAnswerImg: "https://media.giphy.com/media/N35rW3vRNeaDC/giphy.gif",
@@ -36,7 +36,7 @@ $(document).ready(function () {
             answerOption4: "Maine"
         },
 
-        question4: {
+        question4 = {
             question: "Donald Trump's current term as US President ends in what year?",
             correctAnswerImg: "https://media.giphy.com/media/l0MZdQSxiGv5H5LYk/giphy.gif",
             incorrectAnswerImg: "https://media.giphy.com/media/Q8OIR3s0hT5p6/giphy.gif",
@@ -48,7 +48,7 @@ $(document).ready(function () {
             answerOption4: "2025"
         },
 
-        question5: {
+        question5 = {
             question: "Mt. Everest sits on the border of which two countries?",
             correctAnswerImg: "https://media.giphy.com/media/kYuGsNb3vWT8Q/giphy.gif",
             incorrectAnswerImg: "https://media.giphy.com/media/6tMe6PtimsGuk/giphy.gif",
@@ -59,13 +59,13 @@ $(document).ready(function () {
             answerOption3: "Nepal and China",
             answerOption4: "Russia and China"
         }
-    }
+    ] //Array that contains objects for question data
 
     var timeRemaining;
     var countdownTimer;
 
     function startCountDown() {
-        timeRemaining = 5;
+        timeRemaining = 20;
         countdownTimer = setInterval(function () {
             timeRemaining--;
             $("#timer").text(timeRemaining);
@@ -73,10 +73,10 @@ $(document).ready(function () {
                 timeoutScreen();
             }
         }, 1000);
-    }
+    } //Sets time allowed to answer question
 
     var questionCount = Object.keys(questions).length; //total number of questions
-    var questionPicker; //= Math.round(Math.random(Object.keys(questions).length)); //generates number by which property is picked from question object
+    var questionPicker; //generates number by which property is picked from question object
     var currentQuestion;
 
     var questionHistory = []; //Array to store history of questions already asked
@@ -95,7 +95,7 @@ $(document).ready(function () {
         currentQuestion = Object.keys(questions)[questionPicker];
         questionHistory.push(questionPicker);
         pageContent();
-    }
+    } //Function that clears timer intervals, sets a new question
 
     function pageContent() {
         var timerDiv = $('<h4 align="center">Time Remaining: <span id="timer"></span></h4>');
@@ -121,7 +121,7 @@ $(document).ready(function () {
         var aoDiv4 = $('<h2 class="answer" id="answerOption4" data-question="answerOption4"></h2>');
         $(".gameContent").append(aoDiv4);
         $("#answerOption4").text(questions[currentQuestion].answerOption4);
-    }//executes eachtime page contnet must be initialised or changed
+    }//executes each time page content for questions must be initialised or changed
 
 
     var selectedAnswer;
@@ -133,7 +133,7 @@ $(document).ready(function () {
         } else {
             lossScreen();
         }
-    })
+    }) //Executes on clicking answer to check whether answer correct and take appropriate action
 
     var correctScreenTimer;
     var correctCount = 0;
@@ -152,7 +152,7 @@ $(document).ready(function () {
             correctScreenTimer = setInterval(gameOverScreen, 1000 * 10);
             $(".skipBtn").on("click", function () { gameOverScreen() });
         }
-    }
+    } //New window content for scenario where correct answer selected
 
     var lossScreenTimer;
     var lossCount = 0;
@@ -171,7 +171,7 @@ $(document).ready(function () {
             lossScreenTimer = setInterval(gameOverScreen, 1000 * 10);
             $(".skipBtn").on("click", function () { gameOverScreen() });
         }
-    }
+    } //New window content for scenario where incorrect answer selected
 
     var timeoutTimer;
     var timeoutCount = 0;
@@ -189,7 +189,7 @@ $(document).ready(function () {
             timeoutTimer = setInterval(gameOverScreen, 1000 * 10);
             $(".skipBtn").on("click", function () { gameOverScreen() });
         }
-    }
+    } //New window content for scenario where user runs out of time
 
     var gameOverTimer;
     var gameOverImg = "https://media.giphy.com/media/3osBL8wMQYQPYh0Jgs/giphy.gif";
@@ -210,10 +210,10 @@ $(document).ready(function () {
             correctCount = 0;
             lossCount = 0;
         })
-    }
+    } //New window content for scenario where all questions completed, game is over
 
     $(".startBtn").on("click", function start() {
         newQuestion();
-    });
+    }); //Starts the game upon clicking start button on opening page
 
 })
