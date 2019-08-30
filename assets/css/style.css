@@ -5,12 +5,18 @@ body {
 }
 
 .container {
-    background-color: lightslategray;
-    color: whitesmoke;
-    height: 80vh;
+    background-color: #62bb46;
+    color: white;
+
+    min-height: 90vh;
     margin-top: 5vh;
-    border: 1px solid lightslategray;
+    margin-bottom: 5vh;
+    border: 1px solid #62bb46;
     border-radius: 10px;
+}
+
+.skipBtn,.startBtn,.newGameBtn {
+    margin-top: 3px;
 }
 
 .answer {
