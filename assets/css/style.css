@@ -7,10 +7,8 @@ body {
 .container {
     background-color: #62bb46;
     color: white;
-
-    min-height: 90vh;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
+    min-height: 80vh;
+    margin-top: 10vh;
     border: 1px solid #62bb46;
     border-radius: 10px;
 }
