@@ -21,6 +21,10 @@ body {
     background-color: white;
 }
 
+.answer:hover {
+    cursor: pointer;
+}
+
 #answerOption1 {
     color: blue;
     border: blue 3px solid;
